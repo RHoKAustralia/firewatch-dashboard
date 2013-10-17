@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-include_once('/../functions.php');
+include('/../functions.php');
 
 if(isset($_GET['independent'])) {
   echo get_fdr_list();
@@ -11,14 +11,14 @@ if(isset($_GET['independent'])) {
       'district' => '',
       'days' => ''
     ), $atts));
-    $content = '<div class="widget-data fire-forecast">'.get_fire_danger_rating_forecast_list($district, $days).'</div>';
+    $content = '<div class="widget-data fire-forecast">'.get_fdr_forecast_list($district, $days).'</div>';
     $content .= '<div class="widget-details"><abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
     return $content;
   }
   add_shortcode('fire_danger_rating_forecast', 'fire_danger_rating_forecast');
 }
 
-function get_fire_danger_rating_forecast_list($district = "central", $days = "4") {
+function get_fdr_forecast_list($district = "central", $days = "4") {
   $data = get_weather_and_cfa_fdr_forecast($district, $days);
 
   ob_start();
@@ -42,7 +42,7 @@ function get_weather_and_cfa_fdr_forecast($district, $days) {
   curl_close($ch);
 
   $xmlObj = simplexml_load_string($output);
-  $arrXml = convert_objects_into_array($xmlObj);
+  $arrXml = objectsIntoArray($xmlObj);
 
   $timezone = "Australia/Melbourne";
   date_default_timezone_set($timezone);

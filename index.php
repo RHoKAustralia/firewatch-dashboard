@@ -116,7 +116,7 @@ function get_cfa_warning_advise_feed() {
   //$code = $headers[0];
   //if($code =~ '200') {
   $xmlObj = simplexml_load_string($output);
-  $arrXml = convert_objects_into_array($xmlObj);
+  $arrXml = objectsIntoArray($xmlObj);
 
 
   if (count($arrXml['channel']['item']['title']) == 0) {
@@ -155,7 +155,7 @@ function get_cfa_incident_feed() {
   curl_close($ch);
 
   $xmlObj = simplexml_load_string($output);
-  $arrXml = convert_objects_into_array($xmlObj);
+  $arrXml = objectsIntoArray($xmlObj);
 
   if (count($arrXml['channel']['item']) == 0) {
     $data = "No Incidents have been recorded ";

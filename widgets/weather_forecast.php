@@ -1,12 +1,12 @@
 <?php
 error_reporting(0);
-include_once('/../functions.php');
+include('/../functions.php');
+include('/../../../../wp-load.php');
 
 if(isset($_GET['independent'])) {
   $temperature_unit='c';
   echo get_weather_forecast($temperature_unit);
 } else {
-  include_once('/../../../../wp-load.php');
   function weather_forecast($atts) {
     extract(shortcode_atts(array(
       'district' => '',

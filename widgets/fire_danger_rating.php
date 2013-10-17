@@ -34,7 +34,7 @@ function get_cfa_fdr($district) {
   $data = "";
 
   $xmlUrl = "http://www.cfa.vic.gov.au/restrictions/$district-firedistrict_rss.xml"; // XML feed file/URL
- 
+  $data .= $xmlUrl;
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $xmlUrl);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -42,7 +42,7 @@ function get_cfa_fdr($district) {
   curl_close($ch);
 
   $xmlObj = simplexml_load_string($output);
-  $arrXml = convert_objects_into_array($xmlObj);
+  $arrXml = objectsIntoArray($xmlObj);
 
   $timezone = "Australia/Melbourne";
   date_default_timezone_set($timezone);

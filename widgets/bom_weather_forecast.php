@@ -17,7 +17,7 @@ function get_bom_weather_forecast() {
   curl_close($ch);
 
   $xmlObj = simplexml_load_string($output);
-  $arrXml = convert_objects_into_array($xmlObj);
+  $arrXml = objectsIntoArray($xmlObj);
 
   $index = 0;
   $TEMP_LOCATION = array(); 
