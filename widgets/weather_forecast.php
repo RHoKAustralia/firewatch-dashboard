@@ -3,7 +3,8 @@ error_reporting(0);
 include_once('/../functions.php');
 
 if(isset($_GET['independent'])) {
-  echo get_weather_forecast();
+  $temperature_unit='c';
+  echo get_weather_forecast($temperature_unit);
 } else {
   include_once('/../../../../wp-load.php');
   function weather_forecast($atts) {
@@ -12,16 +13,13 @@ if(isset($_GET['independent'])) {
       'temperature_unit' => ''
     ), $atts));
     $content = '<div class="widget-data">'.get_weather_forecast($temperature_unit).'</div>';
-    $content .= '<div class="widget-details"><abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1&temperature_unit=$temperature_unit">Refresh</a></div>';
+    $content .= '<div class="widget-details"><abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
     return $content;
   }
   add_shortcode('weather_forecast', 'weather_forecast');
 }
 
-function get_weather_forecast($temperature_unit) {
-  if(isset($_GET['temperature_unit'])) {
-    $temperature_unit=$_GET['temperature_unit']
-  }
+function get_weather_forecast($temperature_unit = 'c') {
   $forecast = '<div class="weather_forecast"></div>';
   $forecast .= "
 <script>

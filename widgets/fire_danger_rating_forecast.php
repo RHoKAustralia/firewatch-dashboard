@@ -18,7 +18,7 @@ if(isset($_GET['independent'])) {
   add_shortcode('fire_danger_rating_forecast', 'fire_danger_rating_forecast');
 }
 
-function get_fire_danger_rating_forecast_list($district = "central", $days = 4) {
+function get_fire_danger_rating_forecast_list($district = "central", $days = 3) {
   $data = get_cfa_fdr_forecast($district, $days);
 
   ob_start();
@@ -27,7 +27,7 @@ function get_fire_danger_rating_forecast_list($district = "central", $days = 4) 
   return $list;
 }
 
-function get_cfa_fdr_forecast($district, $days) {
+function get_cfa_fdr_forecast($district = "central", $days = 3) {
 
   $ITEM_INDEX = 0;
   $MAX_ITEMS = $days;

@@ -36,8 +36,8 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
     </div>
   </div>
 
-  <p></p>
 <!-- start widget footer links -->
+  <p></p>
   <div class="row cfa-buttons">
     <div class="large-6 columns">
       <div>
