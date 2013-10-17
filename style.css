@@ -316,4 +316,4 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c1d36f', end
 .fdr-wrapper .below-twitter .yellow-button { background:#FFC70F; font-weight:700; font-size:15px; line-height:18px; padding:10px 15px; margin-top:10px; display:inline-block; text-decoration:none; }
 
 .large-6 { position: relative; width: 50%; }
-.column, .columns { float: left; padding-left: 0.9375em; padding-right: 0.9375em; position: relative; }
+.column, .columns { float: left; padding-left: 0.9375em; padding-right: 0.9375em; position: relative; direction: ltr; }

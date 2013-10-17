@@ -15,7 +15,7 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
       </div>
       <div class="widget-box">
         <p><strong>Fire Danger Rating Forecast</strong></p>
-        [fire_danger_rating_forecast district="central"]
+        [fire_danger_rating_forecast district="central" days="3"]
       </div>
 
       <div class="widget-box chart-widget" style="background: none repeat scroll 0 0 #FFFFFF">
@@ -36,10 +36,9 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
     </div>
   </div>
 
-  <p></p>
 <!-- start widget footer links -->
   <div class="row cfa-buttons">
-    <div class="large-6 columns">
+    <div class="col six">
       <div>
         <a class="widget-box button-style vic-roads" target="_blank" href="http://alerts.vicroads.vic.gov.au/melbourne-metropolitan/nillumbik">
           <div class="col six button-bg">&nbsp;</div>
@@ -48,7 +47,7 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
         </a>
       </div>
     </div>  
-    <div class="large-6 columns">
+    <div class="col six">
       <div>
         <a class="widget-box button-style cfa" target="_blank" href="http://www.cfa.vic.gov.au/warnings-restrictions/warnings-and-incidents/">
           <div class="col four button-bg">&nbsp;</div>

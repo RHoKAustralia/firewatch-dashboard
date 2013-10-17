@@ -18,7 +18,7 @@ if(isset($_GET['independent'])) {
   add_shortcode('fire_danger_rating_forecast', 'fire_danger_rating_forecast');
 }
 
-function get_fire_danger_rating_forecast_list($district = "central", $days = 4) {
+function get_fire_danger_rating_forecast_list($district = "central", $days = '3') {
   $data = get_cfa_fdr_forecast($district, $days);
 
   ob_start();
@@ -30,7 +30,7 @@ function get_fire_danger_rating_forecast_list($district = "central", $days = 4) 
 function get_cfa_fdr_forecast($district, $days) {
 
   $ITEM_INDEX = 0;
-  $MAX_ITEMS = $days;
+  $MAX_ITEMS = intval($days);
   $data = "";
 
   $xmlUrl = "http://www.cfa.vic.gov.au/restrictions/$district-firedistrict_rss.xml"; // XML feed file/URL
