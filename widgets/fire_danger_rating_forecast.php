@@ -1,26 +1,24 @@
 <?php
-error_reporting(1);
-include('/../functions.php');
-include('/../../../../wp-load.php');
+define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
+include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 if(isset($_GET['independent'])) {
-  $content = get_fdr_forecast_list();
-  echo $content;
+  echo get_fdr_forecast_list();
 } else {
+  include_once(FIREWATCH_ROOT_DIR.'/../../../../wp-load.php');
   function fire_danger_rating_forecast($atts) {
     extract(shortcode_atts(array(
-      'district' => '',
-      'days' => ''
+      'district' => ''
     ), $atts));
-    $content = '<div class="widget-data fire-forecast">'.get_fdr_forecast_list($district, $days).'</div>';
+    $content = '<div class="widget-data fire-forecast">'.get_fdr_forecast_list($district).'</div>';
     $content .= '<div class="widget-details"><abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
     return $content;
   }
   add_shortcode('fire_danger_rating_forecast', 'fire_danger_rating_forecast');
 }
 
-function get_fdr_forecast_list($district = "central", $days = '3') {
-  $data = get_cfa_fdr_forecast($district, $days);
+function get_fdr_forecast_list($district = "central") {
+  $data = get_cfa_fdr_forecast($district);
 
   ob_start();
   echo $data;
@@ -28,7 +26,7 @@ function get_fdr_forecast_list($district = "central", $days = '3') {
   return $list;
 }
 
-function get_cfa_fdr_forecast($district, $days) {
+function get_cfa_fdr_forecast($district) {
 
   $ITEM_INDEX = 0;
   $MAX_ITEMS = 3;
@@ -48,14 +46,14 @@ function get_cfa_fdr_forecast($district, $days) {
   $timezone = "Australia/Melbourne";
   date_default_timezone_set($timezone);
 
-  $aest = strtotime($arrXml[channel][pubDate]);
+  $aest = strtotime($arrXml['channel']['pubDate']);
   //echo $arrXml[channel][pubDate];
   if (count($arrXml['channel']['item']) == 0) {
     $data = "No Ratings are available.";
   } else {
   while ($ITEM_INDEX < $MAX_ITEMS) {
-    $title = $arrXml[channel][item][$ITEM_INDEX][title];
-    $description = $arrXml[channel][item][$ITEM_INDEX][description];
+    $title = $arrXml['channel']['item'][$ITEM_INDEX]['title'];
+    $description = $arrXml['channel']['item'][$ITEM_INDEX]['description'];
     // Get danger level
     $ratingstr = explode("/images/fdr/$district/", $description);
     $ratingstr = explode(".gif", $ratingstr[1]);

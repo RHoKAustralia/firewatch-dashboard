@@ -8,6 +8,7 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
       <div class="widget-box">
         <p><strong>Current Fire Danger Rating </strong></p>
         [fire_danger_rating district="central"]
+        <a target="_blank" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.cfa.vic.gov.au']);" href="http://www.cfa.vic.gov.au/warnings-restrictions/central-fire-district/">CFA Website</a>
       </div>
       <div class="widget-box">
         <p><strong>Current Weather Conditions </strong></p>

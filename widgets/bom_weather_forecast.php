@@ -1,11 +1,11 @@
 <?php 
-error_reporting(0);
-include_once('/../functions.php');
+define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
+include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 function get_bom_weather_forecast() {
 
   $ITEM_INDEX = 0;
-  $MAX_ITEMS = 4;
+  $MAX_ITEMS = 3;
   $data = "";
 
   $xmlUrl = "ftp://ftp2.bom.gov.au/anon/gen/fwo/IDV10753.xml";
@@ -32,22 +32,20 @@ function get_bom_weather_forecast() {
         $high_temp = $element_type->element[2];
         $TEMP_LOCATION[$ITEM_INDEX] .= "Date:$date<br/>High Temp: $high_temp<br/>";
         $ITEM_INDEX += 1;
+        // $TEMP_LOCATION[$ITEM_INDEX] .= "<hr/>";
+        break;
       }
-      $TEMP_LOCATION[$ITEM_INDEX] .= "<hr/>";
-      break;
     }
     $index += 1;
   }
-
   return $TEMP_LOCATION;
-  
 }
 
 
-$arr = get_bom_weather_forecast();
+// $arr = get_bom_weather_forecast();
 
-foreach($arr as $item) {
+// foreach($arr as $item) {
 
-  print_r($item);
-}
+//  print_r($item);
+// }
 ?>

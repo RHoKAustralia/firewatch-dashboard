@@ -1,8 +1,8 @@
 <?php
-error_reporting(0);
-include_once('/../functions.php');
+define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
+include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
-include_once('/../../../../wp-load.php');
+include_once('../../../../wp-load.php');
 function twitter_feed($atts) {
   extract(shortcode_atts(array(
     'search_query' => '',
