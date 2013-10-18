@@ -3,7 +3,8 @@ define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
 include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 if(isset($_GET['independent'])) {
-  echo get_fdr_list();
+  $district = $_GET['district'];
+  echo get_fdr_list($district);
 } else {
   include_once('/../../../../wp-load.php');
   function fire_danger_rating($atts) {
@@ -14,13 +15,13 @@ if(isset($_GET['independent'])) {
     $content .= '<div class="widget-details">';
     $content .= '<a target="_blank" onclick="javascript:_gaq.push([\'_trackEvent\',\'outbound-article\',\'http://www.cfa.vic.gov.au\']);" href="http://www.cfa.vic.gov.au/warnings-restrictions/' .$district. '-fire-district/">CFA Website</a>';
     $content .= '<abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr>';
-    $content .= '<a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
+    $content .= '<a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1&district='. $district .'">Refresh</a></div>';
     return $content;
   }
   add_shortcode('fire_danger_rating', 'fire_danger_rating');
 }
 
-function get_fdr_list($district = "central") {
+function get_fdr_list($district) {
   $data = get_cfa_fdr($district);
 
   ob_start();

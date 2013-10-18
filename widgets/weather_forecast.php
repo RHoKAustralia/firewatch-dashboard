@@ -3,7 +3,7 @@ define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
 include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 if(isset($_GET['independent'])) {
-  $temperature_unit='c';
+  $temperature_unit=$_GET['temperature_unit'];
   echo get_weather_forecast($temperature_unit);
 } else {
   function weather_forecast($atts) {
@@ -16,13 +16,13 @@ if(isset($_GET['independent'])) {
     $content = '<div class="widget-data">'.get_weather_forecast($temperature_unit).'</div>';
     $content .= '<div class="widget-details">';
     $content .= '<a target="_blank" onclick="javascript:_gaq.push([\'_trackEvent\',\'outbound-article\',\'http://www.bom.gov.au\']);" href="'. $bom_website .'">BOM Website</a>';
-    $content .= '<abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
+    $content .= '<abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1&temperature_unit='. $temperature_unit .'">Refresh</a></div>';
     return $content;
   }
   add_shortcode('weather_forecast', 'weather_forecast');
 }
 
-function get_weather_forecast($temperature_unit = 'c') {
+function get_weather_forecast($temperature_unit) {
   $forecast = '<div class="weather_forecast"></div>';
   $forecast .= "
 <script>

@@ -29,7 +29,7 @@ add_shortcode('fdr_wrapper', 'fdr_wrapper');
 add_shortcode('fdr_wrapper_end', 'fdr_wrapper_end');
 
 include_once('widgets/fire_danger_rating.php');
-include_once('widgets/fire_danger_rating_forecast.php');
+// include_once('widgets/fire_danger_rating_forecast.php');
 include_once('widgets/weather_forecast.php');
 include_once('widgets/day_forecast.php');
 include_once('widgets/twitter_feed.php');

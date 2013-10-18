@@ -6,7 +6,7 @@ include_once('../../../../wp-load.php');
 function twitter_feed($atts) {
   extract(shortcode_atts(array(
     'search_query' => '',
-    'widget_id' => ''
+    'widget_id' => '',
   ), $atts));
   $content = '<div class="widget-data">'.get_twitter_feed($search_query, $widget_id).'</div>';
   // $content .= '<div class="widget-details"><abbr class="widget-time timeago" title="'.date('r').'">'.date().'</abbr><a class="refresh-widget" data-url="'.plugin_dir_url(__FILE__).basename(__FILE__).'?independent=1">Refresh</a></div>';
