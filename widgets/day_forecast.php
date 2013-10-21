@@ -8,7 +8,6 @@ if(isset($_GET['independent'])) {
   $bom_area = $_GET['bom_area'];
   echo get_forecast_list($district, $bom_area);
 } else {
-  echo FIREWATCH_ROOT_DIR;
   include_once(FIREWATCH_ROOT_DIR.'/../../../../wp-load.php');
   function day_forecast($atts) {
     extract(shortcode_atts(array(

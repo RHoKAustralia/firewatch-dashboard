@@ -11,7 +11,7 @@ This page brings together information from the CFA, Bureau of Meteorology and Vi
       </div>
       <div class="widget-box">
         <p><strong>Current Weather Conditions </strong></p>
-        [weather_forecast temperature_unit="c"]
+        [weather_forecast temperature_unit="c" woeid="1106631"]
       </div>
       <div class="widget-box">
         <p><strong>Fire Danger Rating Forecast</strong></p>
