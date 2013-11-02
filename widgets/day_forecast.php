@@ -35,8 +35,8 @@ function get_forecast_list($district, $bom_area) {
 
 function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
 
-  $ITEM_INDEX = 0;
-  $MAX_ITEMS = 3;
+  $ITEM_INDEX = 1;
+  $MAX_ITEMS = 4;
   $data = "";
 
   $xmlUrl = "http://www.cfa.vic.gov.au/restrictions/$district-firedistrict_rss.xml"; // XML feed file/URL
@@ -86,10 +86,10 @@ function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
         $rating = "High";
         break;
       case "lowtomoderate":
-        $rating = "Low To Moderate";
+        $rating = "Low To Mod";
         break;
       case "low-moderate":
-        $rating = "Low - Moderate";
+        $rating = "Low - Mod";
         break;
       case "noforecast":
         $rating = "No Forecast";
@@ -107,18 +107,6 @@ function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
     $data .= '</div>';
     $data .= '</div>';
 
-
-    // Get danger level
-    // $ratingstr = explode("/images/fdr/$district/", $description);
-    // $ratingstr = explode(".gif", $ratingstr[1]);
-    // $ratingstr = explode("_tfb", $ratingstr[0]);
-    // $ratingstr = $ratingstr[0];
-
-    // $data .= $ratingstr;
-    // $data .= '<span class="bom-weather">'.$bom_weather_forecast[$ITEM_INDEX+1].'</span>';
-
-    if ($ITEM_INDEX > 0)
-      $data .= "<div class='fdr_links' id='fdr_link_fdr_$ITEM_INDEX' onclick='showRating($ITEM_INDEX)'>$title</div>";
     $ITEM_INDEX += 1;
   }
   }
