@@ -52,8 +52,8 @@ function get_cfa_fdr_forecast($district) {
     $data = "No Ratings are available.";
   } else {
   while ($ITEM_INDEX < $MAX_ITEMS) {
-    $title = $arrXml['channel']['item'][$ITEM_INDEX+1]['title'];
-    $description = $arrXml['channel']['item'][$ITEM_INDEX+1]['description'];
+    $title = $arrXml['channel']['item'][$ITEM_INDEX]['title'];
+    $description = $arrXml['channel']['item'][$ITEM_INDEX]['description'];
     // Get danger level
     $ratingstr = explode("/images/fdr/$district/", $description);
     $ratingstr = explode(".gif", $ratingstr[1]);
