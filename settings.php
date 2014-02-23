@@ -194,7 +194,7 @@ class FireWatchSettingsPage
             '<input type="text" id="bom_area" name="fire_watch_options[bom_area]" value="%s">',
             isset( $this->options['bom_area'] ) ? esc_attr( $this->options['bom_area']) : ''
         );
-        echo '<div class="detail">BOM Area is usually the name of the suburb or town with a weather station. To view a map of Victorian weather stations, <a href="http://www.bom.gov.au/products/IDR022.loop.shtml" target="_blank">click here</a>.</div>';
+        echo '<div class="detail">BOM Area is usually the name of the suburb or town with a weather station. To view a map of Victorian weather stations, <a href="http://www.bom.gov.au/vic/forecasts/map7day.shtml" target="_blank">click here</a>.</div>';
     }
 
     /* Get the settings option array and print one of its values */
