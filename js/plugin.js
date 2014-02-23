@@ -5,8 +5,11 @@ function showRating(id) {
 
 jQuery(function() {
   jQuery('.refresh-widget').click(function(){
-    jQuery(this).parent().parent().find('.widget-data').load(jQuery(this).attr('data-url'));
-    console.log(jQuery(this).attr('data-url'));
+    jQuery(this).addClass('refreshing');
+    jQuery(this).parent().parent().find('.widget-data').slideUp(150).load(jQuery(this).attr('data-url'), function() {
+      jQuery(this).delay(150).slideDown(200);
+      jQuery(this).parent().parent().find('.refresh-widget').removeClass('refreshing');
+    });
 
     var objToday = new Date(),
       weekday = new Array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'),

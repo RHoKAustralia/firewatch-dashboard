@@ -1,5 +1,5 @@
 <?php
-define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
+if(!defined('FIREWATCH_ROOT_DIR')) define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
 include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 if(isset($_GET['independent'])) {

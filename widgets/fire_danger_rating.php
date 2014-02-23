@@ -1,5 +1,5 @@
 <?php
-define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
+if(!defined('FIREWATCH_ROOT_DIR')) define( 'FIREWATCH_ROOT_DIR', dirname(__FILE__) );
 include_once(FIREWATCH_ROOT_DIR.'/../functions.php');
 
 if(isset($_GET['independent'])) {
@@ -32,11 +32,11 @@ function get_fdr_list($district) {
 
 function get_cfa_fdr($district) {
 
-  $ITEM_INDEX = 0;
-  $MAX_ITEMS = 1;
-  $data = "";
+  $item_index = 0;
+  $max_items = 1;
+  $data = '';
 
-  $xmlUrl = "http://www.cfa.vic.gov.au/restrictions/$district-firedistrict_rss.xml"; // XML feed file/URL
+  $xmlUrl = 'http://www.cfa.vic.gov.au/restrictions/'.$district.'-firedistrict_rss.xml'; // XML feed file/URL
   $ch = curl_init();
   curl_setopt($ch, CURLOPT_URL, $xmlUrl);
   curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -47,57 +47,57 @@ function get_cfa_fdr($district) {
   // $arrXml = $xmlObj->objectsIntoArray($xmlObj);
   $arrXml = objectsIntoArray($xmlObj);
 
-  $timezone = "Australia/Melbourne";
+  $timezone = 'Australia/Melbourne';
   date_default_timezone_set($timezone);
 
   $aest = strtotime($arrXml['channel']['pubDate']);
   //echo $arrXml[channel][pubDate];
   if (count($arrXml['channel']['item']) == 0) {
-    $data = "No Ratings are available.";
+    $data = 'No Ratings are available.';
   } else {
-  while ($ITEM_INDEX < $MAX_ITEMS) {
-    $title = $arrXml['channel']['item'][$ITEM_INDEX]['title'];
-    $description = $arrXml['channel']['item'][$ITEM_INDEX]['description'];
+  while ($item_index < $max_items) {
+    $title = $arrXml['channel']['item'][$item_index]['title'];
+    $description = $arrXml['channel']['item'][$item_index]['description'];
     // Get danger level
-    $ratingstr = explode("/images/fdr/$district/", $description);
-    $ratingstr = explode(".gif", $ratingstr[1]);
-    $ratingstr = explode("_tfb", $ratingstr[0]);
+    $ratingstr = explode('/images/fdr/'.$district.'/', $description);
+    $ratingstr = explode('.gif', $ratingstr[1]);
+    $ratingstr = explode('_tfb', $ratingstr[0]);
     $ratingstr = $ratingstr[0];
     switch ($ratingstr) {
-      case "codered":
-        $rating = "Code Red";
+      case 'codered':
+        $rating = 'Code Red';
         break;
-      case "extreme":
-        $rating = "Extreme";
+      case 'extreme':
+        $rating = 'Extreme';
         break;
-      case "severe":
-        $rating = "Severe";
+      case 'severe':
+        $rating = 'Severe';
         break;
-      case "veryhigh":
-        $rating = "Very High";
+      case 'veryhigh':
+        $rating = 'Very High';
         break;
-      case "high":
-        $rating = "High";
+      case 'high':
+        $rating = 'High';
         break;
-      case "lowtomoderate":
-        $rating = "Low To Moderate";
+      case 'lowtomoderate':
+        $rating = 'Low To Moderate';
         break;
-      case "low-moderate":
-        $rating = "Low - Moderate";
+      case 'low-moderate':
+        $rating = 'Low - Moderate';
         break;
-      case "noforecast":
-        $rating = "No Forecast";
+      case 'noforecast':
+        $rating = 'No Forecast';
         break;
       default:
-        $rating = "Error Getting Forecast";
+        $rating = 'Error Getting Forecast';
         break;
     }
-    $data .= '<div class="fdr fdr-'.$ratingstr.'" id="fdr_'.$ITEM_INDEX.'">';
+    $data .= '<div class="fdr fdr-'.$ratingstr.'" id="fdr-'.$item_index.'">';
     $data .= '<span class="danger-level">'.$rating.'</span>';
     $data .= '</div>';
-    if ($ITEM_INDEX > 0)
-      $data .= "<div class='fdr_links' id='fdr_link_fdr_$ITEM_INDEX' onclick='showRating($ITEM_INDEX)'>$title</div>";
-    $ITEM_INDEX += 1;
+    if ($item_index > 0)
+      $data .= '<div class="fdr_links" id="fdr_link_fdr_'.$item_index.'" onclick="showRating('.$item_index.')">$title</div>';
+    $item_index += 1;
   }
   }
 
