@@ -51,7 +51,6 @@ function get_bom_weather_forecast($bom_area) {
   $index = 0;
   $temp_location = array(); 
 
-  error_reporting(0);
   foreach($xmlObj->forecast->area as $area)
   {
     if($area['description'] == $bom_area) {
@@ -96,7 +95,7 @@ function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
   $aest = strtotime($arrXml['channel']['pubDate']);
   //echo $arrXml[channel][pubDate];
 
-  $bom_weather_forecast = get_bom_weather_forecast('Watsonia');
+  $bom_weather_forecast = get_bom_weather_forecast($bom_area);
 
   if (count($arrXml['channel']['item']) == 0) {
     $data = "No Ratings are available.";
@@ -145,7 +144,7 @@ function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
       $data .= '<span class="danger-level">'.$rating.'</span>';
       $data .= '</div>';
       $data .= '</div>';
-      $data .= '</div>';
+      $data .= '</div>'.$bom_area.'asd';
 
       $item_index += 1;
     }
