@@ -51,6 +51,7 @@ function get_bom_weather_forecast($bom_area) {
   $index = 0;
   $temp_location = array(); 
 
+  error_reporting(0);
   foreach($xmlObj->forecast->area as $area)
   {
     if($area['description'] == $bom_area) {
@@ -138,13 +139,13 @@ function get_weather_and_cfa_fdr_forecast($district, $bom_area) {
           break;
       }
       $data .= '<div class="row">';
-      $data .= '<div class="col half">'. $bom_weather_forecast[$item_index+$offset] .'</div>';
-      $data .= '<div class="col half text-right">';
+      $data .= '<div class="col six">'. $bom_weather_forecast[$item_index+$offset] .'</div>';
+      $data .= '<div class="col six text-right">';
       $data .= '<div class="fdr fdr-'.$ratingstr.'" id="fdr_'.$item_index.'">';
       $data .= '<span class="danger-level">'.$rating.'</span>';
       $data .= '</div>';
       $data .= '</div>';
-      $data .= '</div>'.$bom_area.'asd';
+      $data .= '</div>';
 
       $item_index += 1;
     }

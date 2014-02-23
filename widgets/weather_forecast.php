@@ -27,24 +27,25 @@ if(isset($_GET['independent'])) {
 function get_weather_forecast($temperature_unit, $woeid) {
   $forecast = '<div class="weather_forecast"></div>';
   $forecast .= "
-<script>
-jQuery.simpleWeather({
-  zipcode: '',
-  woeid: '" . $woeid . "',
-  location: '',
-  unit: '" . $temperature_unit . "',
-  success: function(weather) {
-    html = '<h3 class=\"temperature-title\">'+weather.temp+'&deg;'+weather.units.temp+'</h3>';
-    html += '<h4 class=\"wind-title\">'+weather.wind.direction+' '+weather.wind.speed+'km/h</h4>';
+    <script>
+    jQuery.simpleWeather({
+      woeid: '".$woeid."',
+      unit: '".$temperature_unit."',
+      location: '',
+      zipcode: '',
+      success: function(weather) {
+        html = '<h3 class=\"temperature-title\">'+weather.temp+'&deg;'+weather.units.temp+'</h3>';
+        html += '<h4 class=\"wind-title\">'+weather.wind.direction+' '+weather.wind.speed+'km/h</h4>';
 
-    jQuery(\".weather_forecast\").html(html);
-  },
-  error: function(error) {
-    jQuery(\".weather_forecast\").html('<p>'+error+'</p>');
-  }
-});
-</script>
+        jQuery(\".weather_forecast\").html(html);
+      },
+      error: function(error) {
+        jQuery(\".weather_forecast\").html('<p>'+error+'</p>');
+      }
+    });
+    </script>
   ";
   return $forecast;
 }
+
 ?>

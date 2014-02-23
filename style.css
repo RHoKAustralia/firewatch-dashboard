@@ -1,5 +1,5 @@
 /* Resets */
-.fw-wrapper, .fw-wrapper * { margin:0; padding:0; margin:0; border:0; font-size:100%; vertical-align:baseline; }
+.fw-wrapper, .fw-wrapper * { margin:0; padding:0; margin:0; border:0; vertical-align:baseline; }
 .fw-wrapper .row { margin:0; }
 
 /* Clearfix */
@@ -22,19 +22,32 @@
 .fw-wrapper .row { display:block; position:relative; }
 .fw-wrapper .col { margin-left:4%; float:left; position:relative; }
 .fw-wrapper .col:first-child { margin-left:0; }
-.fw-wrapper .half { width:48.0%; }
+.fw-wrapper .one { width: 6.333%; }
+.fw-wrapper .two { width: 14.667%; }
+.fw-wrapper .three { width: 23.0%; }
+.fw-wrapper .four { width: 31.333%; }
+.fw-wrapper .five { width: 39.667%; }
+.fw-wrapper .six { width: 48.0%; }
+.fw-wrapper .seven { width: 56.333%; }
+.fw-wrapper .eight { width: 64.667%; }
+.fw-wrapper .nine { width: 73.0%; }
+.fw-wrapper .ten { width: 81.333%; }
+.fw-wrapper .eleven { width: 89.667%; }
+.fw-wrapper .twelve { width: 100%; } 
 
 /* General */
-.fw-wrapper { font-size:14px; line-height:1.5; color:#222222; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+.fw-wrapper { font-size:14px; font-size:100%; line-height:1.5; color:#222222; -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+.fw-wrapper h1, .fw-wrapper h2, .fw-wrapper h3 { margin-bottom:15px; }
+.fw-wrapper h2 { font-size:14px; }
 .fw-wrapper .widget-box a, .fw-wrapper a:visited { color:#222; text-decoration:underline; }
 .fw-wrapper .widget-box a:hover { color:#000; }
 
-.fw-wrapper .widget-box { display:block; position:relative; padding:20px 25px 10px; margin-bottom:24px; background:#EEEEEE; border-radius:5px; border:1px solid #DFDFDE; }
+.fw-wrapper .widget-box { display:block; position:relative; padding:15px 20px 10px; margin-bottom:24px; background:#EEEEEE; border-radius:5px; border:1px solid #DFDFDE; }
+.fw-wrapper .widget-box.twitter { padding:10px; }
 .fw-wrapper .fw-title { font-size:14px; font-weight:bold; margin-bottom:15px; line-height:15px; }
 .fw-wrapper .widget-details { clear:both; position:relative; min-height:16px; font-size:11px; line-height:16px; padding-top:5px; margin-top:15px; }
 .fw-wrapper .widget-details .col { line-height:16px; }
-.fw-wrapper .widget-data { margin-top:10px; }
-.fw-wrapper .timeago { border-bottom:0; position:absolute; bottom:1px; right:40px; line-height:12px; font-size:11px; }
+.fw-wrapper .timeago { border-bottom:0; position:absolute; bottom:1px; right:30px; line-height:12px; font-size:11px; }
 .fw-wrapper .refresh-widget { opacity:0.7; filter:opacity(70); width:16px; height:16px; position:absolute; bottom:0; right:0; text-indent:-9999px; background:url(images/refresh.png); cursor:pointer; }
 .fw-wrapper .refresh-widget:hover { opacity:1.0; }
 
@@ -62,6 +75,7 @@ background:#e8c265; background:-moz-linear-gradient(top, #e8c265 0%, #ca722b 100
 .fw-wrapper .fire-forecast .col.six { height:40px; line-height:40px; font-size:17px; margin-bottom:8px; }
 .fw-wrapper .fire-forecast .fdr .danger-level { font-size:15px; padding:5px; display:block; }
 .fw-wrapper .fire-forecast .fw-noforecast .danger-level { font-size:12px; }
+.fw-wrapper .fire-forecast>.row:last-child>.col { margin-bottom:0; }
 
 /* Current Weather Widget */
 .fw-wrapper .temperature-title { font-size:57px; line-height:57px; font-weight:bold; margin:0; letter-spacing:-1px; }
@@ -78,13 +92,15 @@ background:#e8c265; background:-moz-linear-gradient(top, #e8c265 0%, #ca722b 100
 .widget-box.button-style .col { height:40px; }
 .widget-box.button-style.vic-roads .button-bg { background:url(images/vic-roads.jpg) no-repeat center center; background-size:100%; }
 .widget-box.button-style.cfa { background:#fff url(images/cfa.jpg) 35px 6px no-repeat; background-size:60px 60px ; }
-@media screen and (max-width:1000px) {
-  .row.cfa-buttons .columns { width:100% !important; }
-}
-@media screen and (max-width:479px) {
-  .row.cfa-buttons .widget-box.button-style { padding:15px 13px 15px 7px; font-size:15px; }
-}
 
 .fw-wrapper .below-twitter { padding:10px 10px 0; line-height:1.5; font-size:13px; }
 .fw-wrapper .below-twitter .yellow-button { background:#FFC70F; font-weight:700; font-size:15px; line-height:18px; padding:10px 15px; margin-top:10px; display:inline-block; text-decoration:none; }
 
+/* Responsiveness */
+@media screen and (max-width:767px) {
+  .fw-wrapper .widget-box { padding:10px; }
+  .fw-wrapper .timeago { right:25px; }
+}
+@media screen and (max-width:560px) {
+  .fw-wrapper>.row>.col { width:100%; }
+}

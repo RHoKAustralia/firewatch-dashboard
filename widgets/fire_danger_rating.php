@@ -49,9 +49,8 @@ function get_cfa_fdr($district) {
 
   $timezone = 'Australia/Melbourne';
   date_default_timezone_set($timezone);
-
   $aest = strtotime($arrXml['channel']['pubDate']);
-  //echo $arrXml[channel][pubDate];
+
   if (count($arrXml['channel']['item']) == 0) {
     $data = 'No Ratings are available.';
   } else {
@@ -63,6 +62,7 @@ function get_cfa_fdr($district) {
     $ratingstr = explode('.gif', $ratingstr[1]);
     $ratingstr = explode('_tfb', $ratingstr[0]);
     $ratingstr = $ratingstr[0];
+
     switch ($ratingstr) {
       case 'codered':
         $rating = 'Code Red';
@@ -95,8 +95,7 @@ function get_cfa_fdr($district) {
     $data .= '<div class="fdr fdr-'.$ratingstr.'" id="fdr-'.$item_index.'">';
     $data .= '<span class="danger-level">'.$rating.'</span>';
     $data .= '</div>';
-    if ($item_index > 0)
-      $data .= '<div class="fdr_links" id="fdr_link_fdr_'.$item_index.'" onclick="showRating('.$item_index.')">$title</div>';
+
     $item_index += 1;
   }
   }

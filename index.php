@@ -34,56 +34,56 @@ include_once('widgets/twitter_feed.php');
 
 
 function fire_watch_content( $atts, $content = null ) {
-  $options = get_option('firewatch_options');
+  $options = get_option('fire_watch_options');
+  $district = $options['cfa_district'];
+  $woeid = $options['woeid'];
+  $bom_area = $options['bom_area'];
+  $twitter_timeline = $options['twitter_timeline'];
   $content = '
 <div class="fw-wrapper">
   <div class="row">
-    <div class="col half">
+    <div class="col six">
       <div class="widget-box">
-        <p><strong>Current Fire Danger Rating </strong></p>
-        '.do_shortcode('[fire_danger_rating district="central"]').'
+        <h2>Current Fire Danger Rating</h2>
+        '.do_shortcode('[fire_danger_rating district="'.$district.'"]').'
       </div>
       <div class="widget-box">
-        <p><strong>Current Weather Conditions </strong></p>
-        '.do_shortcode('[weather_forecast temperature_unit="c" woeid="1106631"]').'
+        <h2>Current Weather Conditions</h2>
+        '.do_shortcode('[weather_forecast temperature_unit="c" woeid="'.$woeid.'"]').'
       </div>
       <div class="widget-box">
-        <p><strong>Fire Danger Rating Forecast</strong></p>
-        '.do_shortcode('[day_forecast district="central" bom_area="Watsonia"]').'
+        <h2>Fire Danger Rating Forecast</h2>
+        '.do_shortcode('[day_forecast district="'.$district.'" bom_area="'.$bom_area.'"]').'
       </div>
 
-      <div class="widget-box chart-widget" style="background: none repeat scroll 0 0 #FFFFFF">
+      <div class="widget-box chart-widget" style="background: none repeat scroll 0 0 #fff">
         <a href="http://www.cfa.vic.gov.au/warnings-restrictions/about-fire-danger-ratings/" target="_blank"><br />
           <img alt="" src="http://www.cfa.vic.gov.au/fm_files/img/warnings-restrictions/fdr-chart.gif" width="98%" /><br />
           <span>CFA Website – Info About Fire Danger Ratings</span><br>
         </a>
       </div>
     </div>
-    <div class="col half">
-      <div class="widget-box">
-        <p><strong>Twitter</strong></p>
-        '.
-        $options['twitter_timeline']
-        .'
-          <div class="below-twitter">The information in the Twitter feed above is sourced from members of the community. Use it only as one of many sources of information to assist your decision making.<br>
-             <a class="yellow-button" href="http://www.aurora.asn.au/fire-watch/information-on-twitter/">Information &amp; Instructions</a>
-          </div>
-
+    <div class="col six">
+      <div class="widget-box twitter">
+        '.$twitter_timeline.'
+        <div class="below-twitter">The information in the Twitter feed above is sourced from members of the community. Use it only as one of many sources of information to assist your decision making.<br>
+           <a class="yellow-button" href="http://www.aurora.asn.au/fire-watch/information-on-twitter/">Information &amp; Instructions</a>
+        </div>
       </div>
     </div>
   </div>
 
   <div class="row cfa-buttons">
-    <div class="col half">
+    <div class="col six">
       <div>
         <a class="widget-box button-style vic-roads" target="_blank" href="http://alerts.vicroads.vic.gov.au/melbourne-metropolitan/nillumbik">
-          <div class="col half button-bg">&nbsp;</div>
-          <div class="col half button-content">Closures &amp; <br>Traffic Alerts</div>
+          <div class="col six button-bg">&nbsp;</div>
+          <div class="col six button-content">Closures &amp; <br>Traffic Alerts</div>
           <div class="clear"></div>
         </a>
       </div>
     </div>  
-    <div class="col half">
+    <div class="col six">
       <div>
         <a class="widget-box button-style cfa" target="_blank" href="http://www.cfa.vic.gov.au/warnings-restrictions/warnings-and-incidents/">
           <div class="col four button-bg">&nbsp;</div>

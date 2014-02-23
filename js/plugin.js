@@ -1,8 +1,3 @@
-function showRating(id) {
-  document.getElementById('fdr_'+id).style.display = "block";
-  document.getElementById('fdr_link_fdr_'+id).style.display = "none";
-}
-
 jQuery(function() {
   jQuery('.refresh-widget').click(function(){
     jQuery(this).addClass('refreshing');
