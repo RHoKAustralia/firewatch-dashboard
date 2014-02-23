@@ -33,6 +33,52 @@ class FireWatchSettingsPage
             ?>
             </form>
         </div>
+        <div>
+            <h2>Info</h2>
+            <h4>Values to enter for CFA Districts</h4>
+            <table style="border:1px solid black">
+                <tr style="margin:5px 35px;">
+                    <th style="margin:5px 35px;">District</th>
+                    <th>Value</th>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>Cental District</td>
+                    <td>central</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>East Gippsland Region</td>
+                    <td>eastgippsland</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>Mallee Region</td>
+                    <td>mallee</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>North Central District</td>
+                    <td>northcentral</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>North East District</td>
+                    <td>northeast</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>Northern Country District</td>
+                    <td>northerncountry</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>SouthWest District</td>
+                    <td>southwest</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>West and South Gippsland Region</td>
+                    <td>westandsouthgippsland</td>
+                </tr>
+                <tr style="margin:5px 35px;">
+                    <td>Wimera Region</td>
+                    <td>wimera</td>
+                </tr>
+            </table>
+        </div>
         <?php
     }
 
@@ -138,7 +184,7 @@ class FireWatchSettingsPage
             //     <option value="southwest">SouthWest District</option>
             //     <option value="westandsouthgippsland">West and South Gippsland Region</option>
             //     <option value="wimera">Wimera Region</option>
-            // </select>'
+            // </select>' 
             '<input type="text" id="cfa_district" name="firewatch_options[cfa_district]" value="%s" />',
             isset( $this->options['cfa_district'] ) ? esc_attr( $this->options['cfa_district']) : ''
         );
@@ -149,6 +195,7 @@ class FireWatchSettingsPage
         printf('<textarea id="twitter_widget_id" name="firewatch_options[twitter_timeline]">');
         printf(isset( $this->options['twitter_timeline'] ) ? esc_attr( $this->options['twitter_timeline']) : '');
         printf('</textarea>');
+        printf('<a href="https://dev.twitter.com/docs/embedded-timelines" target="_blank">Generating Twitter Embedded Timelines</a>');
     }
 }
 
