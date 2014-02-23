@@ -34,6 +34,7 @@ include_once('widgets/twitter_feed.php');
 
 
 function fire_watch_content( $atts, $content = null ) {
+  $options = get_option('firewatch_options');
   $content = '
 <div class="fw-wrapper">
   <div class="row">
@@ -61,7 +62,9 @@ function fire_watch_content( $atts, $content = null ) {
     <div class="col half">
       <div class="widget-box">
         <p><strong>Twitter</strong></p>
-        '.do_shortcode('[twitter_feed search_query="#3076fire&amp;#3750fire" widget_id="389580341368733696"]').'
+        '.
+        $options['twitter_timeline']
+        .'
           <div class="below-twitter">The information in the Twitter feed above is sourced from members of the community. Use it only as one of many sources of information to assist your decision making.<br>
              <a class="yellow-button" href="http://www.aurora.asn.au/fire-watch/information-on-twitter/">Information &amp; Instructions</a>
           </div>

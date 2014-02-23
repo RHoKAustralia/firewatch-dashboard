@@ -1,4 +1,4 @@
-<?php
+    <?php
 class FireWatchSettingsPage
 {
     private $options;
@@ -19,7 +19,7 @@ class FireWatchSettingsPage
 
     public function create_admin_page() {
         // Set class property
-        $this->options = get_option( 'my_option_name' );
+        $this->options = get_option( 'firewatch_options' );
         ?>
         <div class="wrap">
             <?php screen_icon(); ?>
@@ -27,7 +27,7 @@ class FireWatchSettingsPage
             <form method="post" action="options.php">
             <?php
                 // This prints out all hidden setting fields
-                settings_fields( 'my_option_group' );   
+                settings_fields( 'firewatch_option_group' );   
                 do_settings_sections( 'my-setting-admin' );
                 submit_button(); 
             ?>
@@ -39,8 +39,8 @@ class FireWatchSettingsPage
     /* Register and add settings */
     public function page_init() {
         register_setting(
-            'my_option_group', // Option group
-            'my_option_name', // Option name
+            'firewatch_option_group', // Option group
+            'firewatch_options', // Option name
             array( $this, 'sanitize' ) // Sanitize
         );
 
@@ -52,20 +52,36 @@ class FireWatchSettingsPage
         );  
 
         add_settings_field(
-            'id_number', // ID
-            'ID Number', // Title 
-            array( $this, 'id_number_callback' ), // Callback
-            'my-setting-admin', // Page
-            'setting_section_id' // Section           
-        );      
-
-        add_settings_field(
-            'title', 
-            'Title', 
-            array( $this, 'title_callback' ), 
+            'woeid', 
+            'WOE ID', 
+            array( $this, 'woeid_callback' ), 
             'my-setting-admin', 
             'setting_section_id'
-        );      
+        );
+
+        add_settings_field(
+            'cfa_district', 
+            'CFA District', 
+            array( $this, 'cfa_district_callback' ), 
+            'my-setting-admin', 
+            'setting_section_id'
+        );
+
+        add_settings_field(
+            'bom_area', 
+            'BOM Area', 
+            array( $this, 'bom_area_callback' ), 
+            'my-setting-admin', 
+            'setting_section_id'
+        );
+
+        add_settings_field(
+            'twitter_timeline', 
+            'Twitter Timeline HTML', 
+            array( $this, 'twitter_timeline_callback' ), 
+            'my-setting-admin', 
+            'setting_section_id'
+        );
     }
 
     /* Sanitize each setting field as needed
@@ -73,11 +89,17 @@ class FireWatchSettingsPage
      */
     public function sanitize( $input ) {
         $new_input = array();
-        if( isset( $input['id_number'] ) )
-            $new_input['id_number'] = absint( $input['id_number'] );
+        if( isset( $input['woeid'] ) )
+            $new_input['woeid'] = sanitize_text_field( $input['woeid'] );
 
-        if( isset( $input['title'] ) )
-            $new_input['title'] = sanitize_text_field( $input['title'] );
+        if( isset( $input['cfa_district'] ) )
+            $new_input['cfa_district'] = sanitize_text_field( $input['cfa_district'] );
+
+        if( isset( $input['bom_area'] ) )
+            $new_input['bom_area'] = sanitize_text_field( $input['bom_area'] );
+
+        if( isset( $input['twitter_timeline'] ) )
+            $new_input['twitter_timeline'] = $input['twitter_timeline'];
 
         return $new_input;
     }
@@ -88,19 +110,45 @@ class FireWatchSettingsPage
     }
 
     /* Get the settings option array and print one of its values */
-    public function id_number_callback() {
+    public function woeid_callback() {
         printf(
-            '<input type="text" id="id_number" name="my_option_name[id_number]" value="%s" />',
-            isset( $this->options['id_number'] ) ? esc_attr( $this->options['id_number']) : ''
+            '<input type="text" id="woeid" name="firewatch_options[woeid]" value="%s" />',
+            isset( $this->options['woeid'] ) ? esc_attr( $this->options['woeid']) : ''
         );
     }
 
     /* Get the settings option array and print one of its values */
-    public function title_callback() {
+    public function bom_area_callback() {
         printf(
-            '<input type="text" id="title" name="my_option_name[title]" value="%s" />',
-            isset( $this->options['title'] ) ? esc_attr( $this->options['title']) : ''
+            '<input type="text" id="bom_area" name="firewatch_options[bom_area]" value="%s" />',
+            isset( $this->options['bom_area'] ) ? esc_attr( $this->options['bom_area']) : ''
         );
+    }
+
+    /* Get the settings option array and print one of its values */
+    public function cfa_district_callback() {
+        printf(
+            // '<select name="cfa_district">
+            //     <option value="central">Central District</option>
+            //     <option value="eastgippsland">East Gippsland Region</option>
+            //     <option value="mallee">Mallee Region</option>
+            //     <option value="northcentral">North Central District</option>
+            //     <option value="northeast">North East District</option>
+            //     <option value="northerncountry">Northern Country District</option>
+            //     <option value="southwest">SouthWest District</option>
+            //     <option value="westandsouthgippsland">West and South Gippsland Region</option>
+            //     <option value="wimera">Wimera Region</option>
+            // </select>'
+            '<input type="text" id="cfa_district" name="firewatch_options[cfa_district]" value="%s" />',
+            isset( $this->options['cfa_district'] ) ? esc_attr( $this->options['cfa_district']) : ''
+        );
+    }
+
+    /* Get the settings option array and print one of its values */
+    public function twitter_timeline_callback() {
+        printf('<textarea id="twitter_widget_id" name="firewatch_options[twitter_timeline]">');
+        printf(isset( $this->options['twitter_timeline'] ) ? esc_attr( $this->options['twitter_timeline']) : '');
+        printf('</textarea>');
     }
 }
 
