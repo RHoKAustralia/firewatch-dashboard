@@ -6,8 +6,8 @@ if(isset($_GET['independent'])) {
   $district = $_GET['district'];
   echo get_fdr_list($district);
 } else {
-  include_once('/../../../../wp-load.php');
   function fire_danger_rating($atts) {
+    include_once('/../../../../wp-load.php');
     extract(shortcode_atts(array(
       'district' => ''
     ), $atts));

@@ -10,11 +10,10 @@
   Author: RHoK and Warrandyte Community
   Version: 0.2
 */
-
 error_reporting(1);
 
-include('functions.php');
-include('settings.php');
+include_once('functions.php');
+include_once('settings.php');
 
 function fdr_wrapper( $atts, $content = null ) {
   return '<div class="fw-wrapper">';
@@ -30,7 +29,6 @@ add_shortcode('fdr_wrapper_end', 'fdr_wrapper_end');
 include_once('widgets/fire_danger_rating.php');
 include_once('widgets/weather_forecast.php');
 include_once('widgets/fire_danger_rating_forecast.php');
-include_once('widgets/twitter_feed.php');
 
 
 function fire_watch_content( $atts, $content = null ) {
