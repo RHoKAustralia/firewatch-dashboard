@@ -19,6 +19,7 @@ Installation
   to activate the FireWatch Dashboard
 * Create a 'FireWatch' page in the Admin Console and use the example in demo-content-txt   
   to display FireWatch Dashboard   
+* FireWatch Dashboard settings can be configured under the WordPress Admin Settings Page.
 
 Support
 --------
